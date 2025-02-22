@@ -1,0 +1,67 @@
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8327482
+Server version: 8.0.40 Source distribution
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+mysql> use emilianoxxx11$default;
+Database changed
+mysql> insert into Usuarios (usuario_id, nombre, apellido, deparatamento)
+    ->      values (1, 'diego', 'toledo', 'DN'),
+    ->      (2, 'rodrigo', 'alvarez', 'RS'),
+    ->      (3, 'maddox', 'donovan', 'BY'),
+    ->      (4, 'christofer', 'zetina', 'BC'),
+    ->      (5, 'cesar', 'Zavala', 'GM'),
+    ->      (6, 'cristopher', 'reyes', 'HD'),
+    ->      (7, 'allison', 'aritzai', 'PN'),
+    ->      (8, 'jose', 'villalobos', 'JK'),
+    ->      (9, 'alejandro', 'ramirez', 'CM'),
+    ->      (10, 'nicolas', 'guzman', 'CL');
+ERROR 1054 (42S22): Unknown column 'deparatamento' in 'field list'
+mysql> insert into Usuarios (usuario_id, nombre, apellido, departamento)
+    ->      values (1, 'diego', 'toledo', 'DN'),
+    ->      (2, 'rodrigo', 'alvarez', 'RS'),
+    ->      (3, 'maddox', 'donovan', 'BY'),
+    ->      (4, 'christofer', 'zetina', 'BC'),
+    ->      (5, 'cesar', 'Zavala', 'GM'),
+    ->      (6, 'cristopher', 'reyes', 'HD'),
+    ->      (7, 'allison', 'aritzai', 'PN'),
+    ->      (8, 'jose', 'villalobos', 'JK'),
+    ->      (9, 'alejandro', 'ramirez', 'CM'),
+    ->      (10, 'nicolas', 'guzman', 'CL');
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+mysql> show table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syn
+tax to use near '' at line 1
+mysql> show tables;
++---------------------------------+
+| Tables_in_emilianoxxx11$default |
++---------------------------------+
+| Usuarios                        |
+| detalle_horario                 |
+| horario                         |
+| plantilla_detalle_horario       |
++---------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from Usuarios;
++------------+------------+------------+--------------+
+| usuario_id | nombre     | apellido   | departamento |
++------------+------------+------------+--------------+
+|          1 | diego      | toledo     | DN           |
+|          2 | rodrigo    | alvarez    | RS           |
+|          3 | maddox     | donovan    | BY           |
+|          4 | christofer | zetina     | BC           |
+|          5 | cesar      | Zavala     | GM           |
+|          6 | cristopher | reyes      | HD           |
+|          7 | allison    | aritzai    | PN           |
+|          8 | jose       | villalobos | JK           |
+|          9 | alejandro  | ramirez    | CM           |
+|         10 | nicolas    | guzman     | CL           |
++------------+------------+------------+--------------+
+10 rows in set (0.01 sec)
