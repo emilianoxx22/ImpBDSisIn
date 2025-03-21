@@ -1,0 +1,111 @@
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 23916245
+Server version: 8.0.40 Source distribution
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+mysql> use emiñianoxxx11$default;
+ERROR 1044 (42000): Access denied for user 'emilianoxxx11'@'%' to database 'emiñianoxxx11$default'
+mysql> use emilianoxxx11$default;
+Database changed
+mysql> CREATE TABLE tabla1 (
+    ->     customer_id INT,
+    ->     type_phone TEXT,
+    ->     number TEXT
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+mysql> 
+mysql> INSERT INTO tabla1 ( customer_id, type_phone, number) VALUES
+    -> (1001, 'Celular', 3338975421),
+    -> (1001, 'Trabajo', 3338976542),
+    -> (1001, 'Casa', 3336989874),
+    -> (2002, 'Celular', 3339636544),
+    -> (2002, 'Trabajo', 3338129856),
+    -> (3003, 'Celular', 3339876541);
+Query OK, 6 rows affected (0.01 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+mysql> 
+mysql> SELECT 
+    ->     customer_id,
+    ->     SUM(CASE WHEN type_phone = 'Celular' THEN number ELSE NULL END) AS Celular,
+    ->     SUM(CASE WHEN type_phone = 'Trabajo' THEN number ELSE NULL END) AS Trabajo,
+    ->     SUM(CASE WHEN type_phone = 'Casa' THEN number ELSE NULL END) AS Casa
+    -> FROM customers
+    -> GROUP BY customer_id;
+ERROR 1146 (42S02): Table 'emilianoxxx11$default.customers' doesn't exist
+mysql> show tables;
++---------------------------------+
+| Tables_in_emilianoxxx11$default |
++---------------------------------+
+| AUTHORS                         |
+| BOOKS                           |
+| CATEGORIES                      |
+| Usuarios                        |
+| detalle_horario                 |
+| gamescores                      |
+| hockeygame                      |
+| hockeyteamplayer                |
+| horario                         |
+| plantilla_detalle_horario       |
+| playoffround                    |
+| roundstats                      |
+| tabla1                          |
+| user                            |
+| userinfo                        |
+| userscorepicks                  |
+| userstatspicks                  |
++---------------------------------+
+17 rows in set (0.00 sec)
+
+mysql> CREATE TABLE tabla1 (
+    ->     customer_id INT,
+    ->     type_phone TEXT,
+    ->     number TEXT
+    -> );
+ERROR 1050 (42S01): Table 'tabla1' already exists
+mysql> 
+mysql> INSERT INTO tabla1 ( customer_id, type_phone, number) VALUES
+    -> (1001, 'Celular', 3338975421),
+    -> (1001, 'Trabajo', 3338976542),
+    -> (1001, 'Casa', 3336989874),
+    -> (2002, 'Celular', 3339636544),
+    -> (2002, 'Trabajo', 3338129856),
+    -> (3003, 'Celular', 3339876541);
+Query OK, 6 rows affected (0.00 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> SELECT 
+    ->     customer_id,
+    ->     SUM(CASE WHEN type_phone = 'Celular' THEN number ELSE NULL END) AS Celular,
+    ->     SUM(CASE WHEN type_phone = 'Trabajo' THEN number ELSE NULL END) AS Trabajo,
+    ->     SUM(CASE WHEN type_phone = 'Casa' THEN number ELSE NULL END) AS Casa
+    -> FROM customers
+    -> GROUP BY customer_id;
+ERROR 1146 (42S02): Table 'emilianoxxx11$default.customers' doesn't exist
+mysql> 
+mysql> 
+mysql> CREATE TABLE tabla2 (
+    -> DESARROLLO VARCHAR(50) NOT NULL,
+    -> ETAPA INT,
+    -> FINALIZADO INT
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> 
+mysql> INSERT INTO tabla2 (DESARROLLO,ETAPA,FINALIZADO) VALUES
+    -> ('RestAPI', 1, '01/02/2024'),
+    -> ('RestAPI', 2, '30/05/2024'),
+    -> ('RestAPI', 3, '29/06/2024'),
+    -> ('Web', 1, '28/10/2024'),
+    -> ('Web', 2, '20/11/2024'),
+    -> ('Web', 3, ''),
+    -> ('App', 1, '30/01/2025'),
+    -> ('App', 2, '');
+Query OK, 8 rows affected, 8 warnings (0.00 sec)
+Records: 8  Duplicates: 0  Warnings: 8
+mysql> 
