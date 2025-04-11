@@ -1,0 +1,48 @@
+owners.
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+mysql> use emilianoxxx11$default;
+Database changed
+mysql> SELECT a.id_empleado AS empleado_1, b.id_empleado AS empleado_2, COUNT(*) AS coincidencias
+    -> FROM licencias a
+    -> JOIN licencias b ON a.licencia = b.licencia AND a.id_empleado < b.id_empleado
+    -> GROUP BY a.id_empleado, b.id_empleado
+    -> HAVING COUNT(*) = (SELECT COUNT(*) FROM licencias c WHERE c.id_empleado = a.id_empleado)
+    -> AND COUNT(*) = (SELECT COUNT(*) FROM licencias d WHERE d.id_empleado = b.id_empleado);
++------------+------------+---------------+
+| empleado_1 | empleado_2 | coincidencias |
++------------+------------+---------------+
+|       1001 |       2002 |             3 |
+|       4004 |       5005 |             3 |
++------------+------------+---------------+
+2 rows in set (0.01 sec)
+mysql> CREATE TABLE flujos_trabajo (
+    -> Flujo VARCHAR(50),
+    -> Caso_1 INT,
+    -> Caso_2 INT,
+    -> Caso_3 INT
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+mysql> 
+mysql> 
+mysql> INSERT INTO flujos_trabajo (Flujo, Caso_1, Caso_2, Caso_3) VALUES
+    -> ('Alta de usuario', 0, 0, 0),
+    -> ('Baja de usuario', 0, 1, 1),
+    -> ('Nueva Orden', 1, 0, 0),
+    -> ('Elimina Orden', 0, 0, 0);
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+mysql> 
+mysql> SELECT
+    -> Flujo,
+    -> (Caso_1 + Caso_2 + Caso_3) AS Aprobado
+    -> FROM flujos_trabajo;
++-----------------+----------+
+| Flujo           | Aprobado |
++-----------------+----------+
+| Alta de usuario |        0 |
+| Baja de usuario |        2 |
+| Nueva Orden     |        1 |
+| Elimina Orden   |        0 |
++-----------------+----------+
+4 rows in set (0.00 sec)
+mysql> 
